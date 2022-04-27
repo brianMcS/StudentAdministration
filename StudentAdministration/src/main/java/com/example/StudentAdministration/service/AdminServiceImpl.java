@@ -12,6 +12,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,6 +24,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private AdminRepository adminRepository;
+    
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public List<Admin> getALLAdmins() {
@@ -31,6 +35,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void addAdmin(Admin admin) {
+        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
         this.adminRepository.save(admin);
     }
 

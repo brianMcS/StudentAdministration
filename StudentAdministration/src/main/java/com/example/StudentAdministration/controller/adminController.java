@@ -25,12 +25,11 @@ public class adminController {
 
     @Autowired
     private AdminService adminService;
-// display list of admin
 
+// display list of admin
     @GetMapping("/admin")
     public String viewHomePage(Model model) {
-        model.addAttribute("listAdmins",
-                adminService.getALLAdmins());
+        model.addAttribute("listAdmins", adminService.getALLAdmins());
         return "adminList";
     }
 

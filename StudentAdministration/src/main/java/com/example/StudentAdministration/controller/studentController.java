@@ -53,7 +53,8 @@ public class studentController {
     public String addStudent(@ModelAttribute("student") Student student) {
 //save admin to database
         studentService.addStudent(student);
-        return "redirect:/";
+        
+        return "adminSection";
     }
 
     @GetMapping("/showFormForStudentUpdate/{kNumber}")
